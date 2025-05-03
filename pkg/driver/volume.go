@@ -64,6 +64,7 @@ func (vol *Volume) Publish(stagingTargetPath string, targetPath string, readOnly
 		return err
 	} else if isMnt {
 		// maybe already mounted?
+		glog.V(0).Infof("target path %s appears to already be mounted", targetPath)
 		return nil
 	}
 

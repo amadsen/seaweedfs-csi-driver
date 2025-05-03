@@ -37,6 +37,9 @@ type fuseUnmounter struct {
 func newMounter(volumeID string, readOnly bool, driver *SeaweedFsDriver, volContext map[string]string) (Mounter, error) {
 	path, ok := volContext["path"]
 	if !ok {
+		// FIXME: don't recreate the default bucket path here. Use a function to implement it and use it in both places.
+		// FIXME: put relative paths under the default bucket path. Do not allow directory traversal when resolving a
+		// relative path.
 		path = fmt.Sprintf("/buckets/%s", volumeID)
 	}
 
